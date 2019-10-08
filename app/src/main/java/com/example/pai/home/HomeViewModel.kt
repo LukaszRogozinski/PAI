@@ -16,9 +16,9 @@ class HomeViewModel : ViewModel() {
     val response: LiveData<String>
         get() = _response
 
-    private val _property = MutableLiveData<EventCategory>()
-    val property: LiveData<EventCategory>
-        get() = _property
+    private val _properties = MutableLiveData<List<EventCategory>>()
+    val properties: LiveData<List<EventCategory>>
+        get() = _properties
 
     private var viewModelJob = Job()
 
@@ -37,7 +37,7 @@ class HomeViewModel : ViewModel() {
            try {
                val listResult = getPropertiesDeffered.await()
                if (listResult.isNotEmpty()) {
-                   _property.value = listResult[0]
+                   _properties.value = listResult
                }
                _response.value =
                    "Success: ${listResult.size} Mars properties retrieved"
