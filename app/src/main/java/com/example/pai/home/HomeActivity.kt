@@ -34,7 +34,7 @@ class HomeActivity : AppCompatActivity() {
 
         viewModel.properties.observe(this, Observer {
             it?.let {
-                adapter.data = it
+                adapter.submitList(it)
             }
         })
 
